@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<title>UF Smart Campus</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <span class="w3-bar-item w3-left">UF Smart Campus Control Center</span>
+</div>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<!-- <div class="w3-main" style="margin-left:300px;margin-top:43px;"> -->
+<div class="w3-main" style="margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-half">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-car w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3></h3> <!-- pull in cloud data for parking spots --> 
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Parking Spots Available</h4>
+      </div>
+    </div>
+    <div class="w3-half">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-lightbulb-o w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3></h3> <!-- pull in cloud data for street lights --> 
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Street Lights Online</h4>
+      </div>
+    </div>
+    <!--
+    <div class="w3-third">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-map-signs w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>3 out of 3</h3> 
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Street Signs Online</h4>
+      </div>
+    </div>
+  </div>
+    -->
+  <div class="w3-container">
+	<h5>Parking Spots</h5>
+  <table class="w3-table w3-striped w3-border w3-white">
+    <tr>
+      <th>Spot Number</th>
+      <th>Status</th>
+  
+    </tr>
+    <tr>
+      <td>1</td>
+      <td id="spot1status">Avaliable</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td id="spot2status">Avaliable</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td id="spot3status">Avaliable</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td id="spot4status">Avaliable</td>
+    </tr>
+    <!--
+    <tr>
+      <td>5</td>
+      <td>Avaliable</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Avaliable</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Avaliable</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Avaliable</td>
+    </tr>
+  -->
+  </table>
+</div>
+
+<div class="w3-container">
+	<h5>Street Lights</h5>
+  <table class="w3-table w3-striped w3-border w3-white">
+    <tr>
+      <th>Light Number</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td id="led1status">Online</td>
+      <!--<td id="led1mosfet"><input type="button" onClick="streetLightOn('15c5a9d7-adc7-4283-99e1-9849b2b2d296')"class="w3-bar-item w3-button" value="ON"/><input type="button" onClick="streetLightOff('15c5a9d7-adc7-4283-99e1-9849b2b2d296')" class="w3-bar-item w3-button" value="OFF"/></td>-->
+    </tr>
+    <tr>
+      <td>2</td>
+      <td id="led2status">Online</td>
+      <!--<td id="led2mosfet"><input type="button" onClick="streetLightOn('47a834fa-c18b-41b0-b59c-f61c42eab75a')"class="w3-bar-item w3-button" value="ON"/><input type="button" onClick="streetLightOff('47a834fa-c18b-41b0-b59c-f61c42eab75a')"  class="w3-bar-item w3-button" value="OFF"/></td>-->
+    </tr>
+    <tr>
+      <td>3</td>
+      <td id="led3status">Online</td>
+      <!--<td id="led3mosfet"><input type="button" onClick="streetLightOn('827b705b-f1d9-479b-b8ff-f24e844deb25')"class="w3-bar-item w3-button" value="ON"/><input type="button" onClick="streetLightOff('827b705b-f1d9-479b-b8ff-f24e844deb25')"  class="w3-bar-item w3-button" value="OFF"/></td>-->
+    </tr>
+    <tr>
+      <td>4</td>
+      <td id="led4status">Online</td>
+      <!--<td id="led4mosfet"><input type="button" onClick="streetLightOn('fdff0a24-9896-40dc-a18c-931981752fbf')"class="w3-bar-item w3-button" value="ON"/><input type="button" onClick="streetLightOff('fdff0a24-9896-40dc-a18c-931981752fbf')"  class="w3-bar-item w3-button" value="OFF"/></td>-->
+    </tr>
+  </table>
+</div>
+
+<!--
+<div class="w3-container">
+	<h5>Street Signs</h5>
+  <table class="w3-table w3-striped w3-border w3-white">
+    <tr>
+      <th>Sign Number</th>
+      <th>Status</th>
+  
+    </tr>
+    <tr>
+    <td>1</td>
+      <td>Online</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Online</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Online</td>
+    </tr>
+  </table>
+</div>
+-->
+
+<!-- <div id="objPanel"></div> -->
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>FOOTER</h4>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+
+
+<script>
+
+var ledMosfetThingIds = {
+  "led1": "15c5a9d7-adc7-4283-99e1-9849b2b2d296",
+  "led2": "47a834fa-c18b-41b0-b59c-f61c42eab75a",
+  "led3": "827b705b-f1d9-479b-b8ff-f24e844deb25",
+  "led4": "fdff0a24-9896-40dc-a18c-931981752fbf"
+};
+
+function getData() {
+  getLightData();
+  getParkingData();
+  setTimeout(getData, 1000);
+}
+
+function streetLightOff(pid) {
+  $.post("http://localhost:3002/lightControl", {"pid":pid, "value":0});
+}
+function streetLightOn(pid) {
+  $.post("http://localhost:3002/lightControl", {"pid":pid, "value":1});
+}
+//http GET request for street light data
+function getLightData() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function getStreetLightData() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("objPanel").innerHTML = this.responseText;
+      var json = $.parseJSON(this.responseText); //process data and place data in HTML
+      for (const key of Object.keys(json)) {
+        //console.log(key, obj[key]);
+        updateUILedStatus(key, json[key]);
+      }
+    }
+  };
+  xhttp.open("GET", "http://localhost:3002/streetData", true);
+  xhttp.send();
+}
+
+//http GET request for parking spot data
+function getParkingData() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function getParkingSpotData() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("objPanel").innerHTML = this.responseText;
+      var json = $.parseJSON(this.responseText); //process data and place data in HTML
+      for (const key of Object.keys(json)) {
+        //console.log(key, obj[key]);
+        updateUIParkingStatus(key, json[key]);
+      }
+    }
+  };
+  xhttp.open("GET", "http://localhost:3002/parkingData", true);
+  xhttp.send();
+}
+function updateUIParkingStatus(name, value) {
+  var status;
+    if(value === 1)
+        status = "Unavailable";
+    else    
+        status = "Available";
+    console.log(value);
+    console.log(status);
+    switch(name) {
+        case "SPOT1":
+            $("#spot1status").text(status);
+            break;
+        case "SPOT2":
+            $("#spot2status").text(status);
+            break;
+        case "SPOT3":
+            $("#spot3status").text(status);
+            break;
+        case "SPOT4":
+            $("#spot4status").text(status);
+            break;
+        default:
+            console.log("Unknown attribute name");
+    }
+}
+
+function updateUILedStatus(name, value) {
+    var status;
+    if(value === 1)
+        status = "Online";
+    else    
+        status = "Offline";
+    console.log(value);
+    console.log(status);
+    switch(name) {
+        case "LED1_STATUS":
+            $("#led1status").text(status);
+            break;
+        case "LED2_STATUS":
+            $("#led2status").text(status);
+            break;
+        case "LED3_STATUS":
+            $("#led3status").text(status);
+            break;
+        case "LED4_STATUS":
+            $("#led4status").text(status);
+            break;
+        default:
+            console.log("Unknown attribute name");
+    }
+}
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+
+getData();
+</script>
+</body>
+</html>
